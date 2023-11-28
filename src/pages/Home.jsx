@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
+
 import CardPokemon from "../components/cardPokemon/CardPokemon";
 import Cabecalho from "../components/cabecalho/Cabecalho";
 import PesquisaPokemon from "../components/pesquisaPokemon/PesquisaPokemon";
 import Paginacao from "../components/paginacao/Paginacao";
-import { Container, Grid } from "@mui/material";
-import { useState } from "react";
+import TemporaryDrawer from "../components/drawer/Drawer";
+
+import { Container, Drawer, Grid } from "@mui/material";
 
 export default function Home() {
 
@@ -45,6 +48,7 @@ export default function Home() {
       <Container sx={{ paddingBottom: 5 }}>
         <Grid container spacing={2}>
           <Cabecalho />
+          <TemporaryDrawer />
           <PesquisaPokemon filtraPokemon={filtraPokemon} />
 
           {api.filter(pokemon => pokemon.name.includes(filtrado)).map((item, index) => (
@@ -58,7 +62,6 @@ export default function Home() {
           </Grid>
         </Grid>
       </Container>
-
     </>
   )
 }   
