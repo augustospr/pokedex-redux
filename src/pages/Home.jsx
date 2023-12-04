@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import CardPokemon from "../components/cardPokemon/CardPokemon";
 import Cabecalho from "../components/cabecalho/Cabecalho";
 import PesquisaPokemon from "../components/pesquisaPokemon/PesquisaPokemon";
 import Paginacao from "../components/paginacao/Paginacao";
-import TemporaryDrawer from "../components/drawer/Drawer";
+import TemporaryDrawer from "../components/drawer/PokemonStatus";
+import statusReducer from "../redux/status/reducer";
 
-import { Container, Drawer, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
+import rootReducer from "../redux/root-reducer";
 
 export default function Home() {
 
@@ -42,6 +45,13 @@ export default function Home() {
       console.log(err);
     }
   }
+
+  // ###### Redux ######
+
+  const { currentStatus } = useSelector((rootReducer) => rootReducer.statusReducer);
+  const dispatch = useDispatch();
+
+  console.log({ currentStatus });
 
   return (
     <>

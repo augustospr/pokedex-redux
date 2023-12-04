@@ -1,3 +1,7 @@
 import { combineReducers } from "redux";
 
-const rootReducer = combineReducers({});
+import statusReducer from "./status/reducer";
+
+const rootReducer = combineReducers({ statusReducer });
+
+export default rootReducer;
