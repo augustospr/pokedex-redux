@@ -53,12 +53,18 @@ export default function Home() {
 
   console.log({ currentStatus });
 
+  // const showPokemonStatus = () => {
+  //   dispatch({
+  //     type: "status/pokemon",
+  //     payload: 
+  //   });
+  // }
+
   return (
     <>
       <Container sx={{ paddingBottom: 5 }}>
         <Grid container spacing={2}>
           <Cabecalho />
-          <TemporaryDrawer />
           <PesquisaPokemon filtraPokemon={filtraPokemon} />
 
           {api.filter(pokemon => pokemon.name.includes(filtrado)).map((item, index) => (
