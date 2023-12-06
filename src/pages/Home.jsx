@@ -48,17 +48,18 @@ export default function Home() {
 
   // ###### Redux ######
 
+  const { posts } = useSelector((rootReducer) => rootReducer.dataFromApi);
   const { currentStatus } = useSelector((rootReducer) => rootReducer.statusReducer);
   const dispatch = useDispatch();
 
   console.log({ currentStatus });
 
-  // const showPokemonStatus = () => {
-  //   dispatch({
-  //     type: "status/pokemon",
-  //     payload: 
-  //   });
-  // }
+  const showPokemonStatus = () => {
+    dispatch({
+      type: "status/pokemon",
+      payload: api
+    });
+  }
 
   return (
     <>
