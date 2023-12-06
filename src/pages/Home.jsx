@@ -6,7 +6,7 @@ import CardPokemon from "../components/cardPokemon/CardPokemon";
 import Cabecalho from "../components/cabecalho/Cabecalho";
 import PesquisaPokemon from "../components/pesquisaPokemon/PesquisaPokemon";
 import Paginacao from "../components/paginacao/Paginacao";
-import getPokemonData from "../api/api";
+import usePokemonData from "../api/api";
 
 import { Container, Grid } from "@mui/material";
 import rootReducer from "../redux/root-reducer";
@@ -25,9 +25,9 @@ export default function Home() {
 
   const [offset, setOffset] = useState(0);
 
+  usePokemonData();
   useEffect(() => {
     getApiInfo();
-    getPokemonData();
   }, [offset]);
 
   const getApiInfo = async () => {

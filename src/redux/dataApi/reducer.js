@@ -1,10 +1,10 @@
 const initialState = {
-  posts: 10
+  posts: []
 }
 
 const dataFromApi = (state = initialState, action) => {
   if (action.type === 'api/data') {
-    return { ...state, posts: 20 };
+    return { ...state, posts: action.payload };
   }
 
   return state;
