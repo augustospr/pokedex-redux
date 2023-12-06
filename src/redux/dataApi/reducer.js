@@ -1,12 +1,13 @@
 const initialState = {
-  posts: []
+  posts: 10
 }
 
 const dataFromApi = (state = initialState, action) => {
   if (action.type === 'api/data') {
-    return {
-      posts: []
-    };
+    return { ...state, posts: 20 };
   }
+
   return state;
 }
+
+export default dataFromApi;

@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import TemporaryDrawer from '../drawer/PokemonStatus';
+import { useSelector, useDispatch } from "react-redux";
 
 export default function CardPokemon({ nome, imagem, tipo }) {
 

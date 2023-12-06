@@ -6,8 +6,7 @@ import CardPokemon from "../components/cardPokemon/CardPokemon";
 import Cabecalho from "../components/cabecalho/Cabecalho";
 import PesquisaPokemon from "../components/pesquisaPokemon/PesquisaPokemon";
 import Paginacao from "../components/paginacao/Paginacao";
-import TemporaryDrawer from "../components/drawer/PokemonStatus";
-import statusReducer from "../redux/status/reducer";
+import getPokemonData from "../api/api";
 
 import { Container, Grid } from "@mui/material";
 import rootReducer from "../redux/root-reducer";
@@ -28,6 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     getApiInfo();
+    getPokemonData();
   }, [offset]);
 
   const getApiInfo = async () => {
@@ -48,18 +48,10 @@ export default function Home() {
 
   // ###### Redux ######
 
-  const { posts } = useSelector((rootReducer) => rootReducer.dataFromApi);
   const { currentStatus } = useSelector((rootReducer) => rootReducer.statusReducer);
   const dispatch = useDispatch();
 
-  console.log({ currentStatus });
-
-  const showPokemonStatus = () => {
-    dispatch({
-      type: "status/pokemon",
-      payload: api
-    });
-  }
+  // console.log({ currentStatus });
 
   return (
     <>
