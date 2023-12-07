@@ -9,7 +9,6 @@ import Paginacao from "../components/paginacao/Paginacao";
 import usePokemonData from "../api/api";
 
 import { Container, Grid } from "@mui/material";
-import rootReducer from "../redux/root-reducer";
 
 export default function Home() {
 
@@ -25,7 +24,6 @@ export default function Home() {
 
   const [offset, setOffset] = useState(0);
 
-  usePokemonData();
   useEffect(() => {
     getApiInfo();
   }, [offset]);
@@ -49,9 +47,11 @@ export default function Home() {
   // ###### Redux ######
 
   const { currentStatus } = useSelector((rootReducer) => rootReducer.statusReducer);
+  const { posts } = useSelector((rootReducer) => rootReducer.dataFromApi);
   const dispatch = useDispatch();
 
-  // console.log({ currentStatus });
+  
+  console.log({ posts });
 
   return (
     <>

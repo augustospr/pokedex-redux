@@ -15,14 +15,4 @@ const usePokemonData = async () => {
   }
 }
 
-// ###### Redux ######
-// const dispatch = useDispatch();
-// const { posts } = useSelector((rootReducer) => rootReducer.dataFromApi);
-
-// const showPokemonStatus = () => {
-//   dispatch({
-//     type: "api/data",
-//   });
-// }
-
 export default usePokemonData;
