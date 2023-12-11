@@ -28,6 +28,8 @@ export default function Home() {
     getApiInfo();
   }, [offset]);
 
+  usePokemonData();
+
   const getApiInfo = async () => {
     try {
       const endpoints = [];
@@ -50,8 +52,9 @@ export default function Home() {
   const { posts } = useSelector((rootReducer) => rootReducer.dataFromApi);
   const dispatch = useDispatch();
 
-  
+
   console.log({ posts });
+  console.log({ currentStatus });
 
   return (
     <>
@@ -66,6 +69,12 @@ export default function Home() {
             </Grid>
 
           ))}
+
+          {/* {posts.map((item) => (
+            <Grid item key={index} xs={12} sm={4} md={2}>
+              <CardPokemon nome={item.name} imagem={item.sprites.front_default} tipo={item.types} />
+            </Grid>
+          ))} */}
           <Grid item xs={12} textAlign="center">
             <Paginacao addMore={() => setOffset(offset + limit)} />
           </Grid>
