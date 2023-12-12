@@ -12,8 +12,6 @@ import { Container, Grid } from "@mui/material";
 
 export default function Home() {
 
-  const [api, setApi] = useState([]);
-
   const [filtrado, setFiltrado] = useState("");
 
   const filtraPokemon = (nome) => {
@@ -23,28 +21,6 @@ export default function Home() {
   const limit = 24;
 
   const [offset, setOffset] = useState(0);
-
-  // useEffect(() => {
-  //   getApiInfo();
-  // }, [offset]);
-
-
-
-  // const getApiInfo = async () => {
-  //   try {
-  //     const endpoints = [];
-  //     for (var i = offset + 1; i <= limit + offset; i++) {
-  //       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-  //     }
-  //     await Promise.all(endpoints.map((endpoint) => fetch(endpoint)))
-  //       .then((res) => Promise.all(res.map(async r => r.json())))
-  //       .then((res) => {
-  //         setApi([...api, ...res]);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 
   // ###### Redux ######
 
@@ -63,16 +39,9 @@ export default function Home() {
           <Cabecalho />
           <PesquisaPokemon filtraPokemon={filtraPokemon} />
 
-          {/* {api.filter(pokemon => pokemon.name.includes(filtrado)).map((item, index) => (
-            <Grid item key={index} xs={12} sm={4} md={2}>
-              <CardPokemon nome={item.name} imagem={item.sprites.front_default} tipo={item.types} />
-            </Grid>
-
-          ))} */}
-
-          {posts.map((item) => (
-            <Grid item key={item.data.id} xs={12} sm={4} md={2}>
-              <CardPokemon nome={item.data.name} imagem={item.data.sprites.front_default} tipo={item.data.types} />
+          {posts.filter(pokemon => pokemon.data.name.includes(filtrado)).map((pokemon) => (
+            <Grid item key={pokemon.data.id} xs={12} sm={4} md={2}>
+              <CardPokemon nome={pokemon.data.name} imagem={pokemon.data.sprites.front_default} tipo={pokemon.data.types} />
             </Grid>
           ))}
 
