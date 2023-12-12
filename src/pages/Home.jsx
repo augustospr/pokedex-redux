@@ -24,37 +24,37 @@ export default function Home() {
 
   const [offset, setOffset] = useState(0);
 
-  useEffect(() => {
-    getApiInfo();
-  }, [offset]);
+  // useEffect(() => {
+  //   getApiInfo();
+  // }, [offset]);
 
-  usePokemonData();
 
-  const getApiInfo = async () => {
-    try {
-      const endpoints = [];
-      for (var i = offset + 1; i <= limit + offset; i++) {
-        endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-      }
-      await Promise.all(endpoints.map((endpoint) => fetch(endpoint)))
-        .then((res) => Promise.all(res.map(async r => r.json())))
-        .then((res) => {
-          setApi([...api, ...res]);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  }
+
+  // const getApiInfo = async () => {
+  //   try {
+  //     const endpoints = [];
+  //     for (var i = offset + 1; i <= limit + offset; i++) {
+  //       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+  //     }
+  //     await Promise.all(endpoints.map((endpoint) => fetch(endpoint)))
+  //       .then((res) => Promise.all(res.map(async r => r.json())))
+  //       .then((res) => {
+  //         setApi([...api, ...res]);
+  //       });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   // ###### Redux ######
+
+  usePokemonData();
 
   const { currentStatus } = useSelector((rootReducer) => rootReducer.statusReducer);
   const { posts } = useSelector((rootReducer) => rootReducer.dataFromApi);
   const dispatch = useDispatch();
 
-
   console.log({ posts });
-  console.log({ currentStatus });
 
   return (
     <>
@@ -63,18 +63,19 @@ export default function Home() {
           <Cabecalho />
           <PesquisaPokemon filtraPokemon={filtraPokemon} />
 
-          {api.filter(pokemon => pokemon.name.includes(filtrado)).map((item, index) => (
+          {/* {api.filter(pokemon => pokemon.name.includes(filtrado)).map((item, index) => (
             <Grid item key={index} xs={12} sm={4} md={2}>
               <CardPokemon nome={item.name} imagem={item.sprites.front_default} tipo={item.types} />
             </Grid>
 
+          ))} */}
+
+          {posts.map((item) => (
+            <Grid item key={item.data.id} xs={12} sm={4} md={2}>
+              <CardPokemon nome={item.data.name} imagem={item.data.sprites.front_default} tipo={item.data.types} />
+            </Grid>
           ))}
 
-          {/* {posts.map((item) => (
-            <Grid item key={index} xs={12} sm={4} md={2}>
-              <CardPokemon nome={item.name} imagem={item.sprites.front_default} tipo={item.types} />
-            </Grid>
-          ))} */}
           <Grid item xs={12} textAlign="center">
             <Paginacao addMore={() => setOffset(offset + limit)} />
           </Grid>
