@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -17,10 +16,6 @@ export default function Home() {
   const filtraPokemon = (nome) => {
     setFiltrado(nome);
   }
-
-  const limit = 24;
-
-  const [offset, setOffset] = useState(0);
 
   // ###### Redux ######
 
@@ -46,7 +41,7 @@ export default function Home() {
           ))}
 
           <Grid item xs={12} textAlign="center">
-            <Paginacao addMore={() => setOffset(offset + limit)} />
+            <Paginacao />
           </Grid>
         </Grid>
       </Container>
