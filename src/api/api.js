@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-
-const limit = 25;
+import { useDispatch, useSelector } from "react-redux";
+import pagination from "../redux/paginacao/reducer";
 
 const usePokemonData = () => {
   const dispatch = useDispatch();
+  const { limit, offset } = useSelector((rootReducer) => rootReducer.pagination);
 
   useEffect( async () => {
     try {
       var endpoints = [];
-      for (var i = 1; i < limit; i++) {
+      for (var i = offset; i < limit; i++) {
         endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
       }
       var response = await axios.all(endpoints.map((endpoint) => axios.get(endpoint)));

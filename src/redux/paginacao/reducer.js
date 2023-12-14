@@ -1,10 +1,11 @@
 const initialState = {
-  limit: 25
+  limit: 25,
+  offset: 1
 }
 
 const pagination = (state = initialState, action) => {
   if (action.type === 'set/pagination') {
-    return { ...state, limit: action.payload }; 
+    return { ...state, state: action.payload };
   }
   return state;
 }
