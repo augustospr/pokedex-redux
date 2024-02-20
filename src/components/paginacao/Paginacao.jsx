@@ -21,7 +21,7 @@ export default function Paginacao() {
 			<Button onClick={previousPage} variant="contained" color="success" sx={{ width: 250 }}>
 				Página anterior
 			</Button>
-			<div>1 / X</div>
+			<div>1 / 20</div>
 			<Button onClick={nextPage} variant="contained" color="success" sx={{ width: 250 }}>
 				Próxima pagina
 			</Button>
